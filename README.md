@@ -51,7 +51,7 @@ python instagram_downloader.py
 
 ## Notes importantes
 
-- Utilisez ce script de manière responsable et dans le respect des conditions d'utilisation d'Instagram
+- Utilisez ce script de manière responsable et dans le respect des conditions d'utilisation d'Instagram. Je me tiendrais aucunement responsable de l'acte commis.
 - Un téléchargement trop intensif peut entraîner des limitations temporaires de votre compte
 - Le script inclut des délais aléatoires pour minimiser les risques de blocage
 
