@@ -17,6 +17,22 @@ def extract_username_from_url(url):
         return match.group(1)
     raise ValueError("URL Instagram invalide")
 
+def handle_private_profile(L, profile):
+    """Gère l'accès aux profils privés"""
+    if profile.is_private:
+        print(f"Le profil {profile.username} est privé.")
+        
+        # Vérifier si on suit déjà le compte
+        if profile.followed_by_viewer:
+            print("Vous suivez déjà ce compte, téléchargement possible.")
+            return True
+            
+        print("Désolé, ce compte est privé et vous ne le suivez pas.")
+        print("Pour des raisons de sécurité et de respect de la vie privée,")
+        print("il n'est pas possible de télécharger le contenu d'un compte privé sans le suivre.")
+        return False
+    return True
+
 def download_instagram_profile(profile_url, output_dir="data"):
     try:
         # Extraire le nom d'utilisateur de l'URL
@@ -56,6 +72,11 @@ def download_instagram_profile(profile_url, output_dir="data"):
         
         # Télécharger le profil avec plus de délai
         profile = instaloader.Profile.from_username(L.context, username)
+        
+        # Vérifier si le profil est privé et le gérer
+        if not handle_private_profile(L, profile):
+            print("Impossible de télécharger le contenu d'un profil privé sans le suivre.")
+            return
         
         print(f"Début du téléchargement des photos et vidéos de {username}...")
         
